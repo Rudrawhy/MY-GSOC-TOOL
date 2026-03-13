@@ -526,19 +526,21 @@ function openBlogModal(index) {
 
     title.textContent = post.title;
     date.innerHTML = `<i class="fas fa-calendar mr-1"></i> ${formatDate(post.date)}`;
-    content.innerHTML = post.content || `<p>${post.excerpt}</p><p class="italic text-gray-500 mt-4">(No full content available)</p>`;
 
-    modal.classList.remove('hidden');
-    // Prevent body scroll
-    document.body.style.overflow = 'hidden';
+    content.innerHTML = post.content
+        ? post.content
+        : `<p>${post.excerpt}</p><p class="italic text-gray-500 mt-4">(No full content available)</p>`;
+
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
 }
 
 function closeBlogModal() {
     const modal = document.getElementById('blog-modal');
-    modal.classList.add('hidden');
-    // Restore body scroll
-    document.body.style.overflow = 'auto';
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
 }
+
 
 // Event listeners for modal
 document.addEventListener('DOMContentLoaded', () => {
@@ -546,20 +548,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.getElementById('blog-modal-close');
 
     if (closeBtn) {
-        closeBtn.addEventListener('click', closeBlogModal);
+        closeBtn.onclick = closeBlogModal;
     }
 
     if (modal) {
-        modal.addEventListener('click', (e) => {
+        modal.onclick = (e) => {
             if (e.target === modal) {
                 closeBlogModal();
             }
-        });
+        };
     }
 
-    // Close on Escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        if (e.key === "Escape") {
             closeBlogModal();
         }
     });
