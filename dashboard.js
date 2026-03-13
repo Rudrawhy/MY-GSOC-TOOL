@@ -560,7 +560,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.addEventListener('keydown', (e) => {
-        if (e.key === "Escape" && modal && modal.style.display === "flex") {
+        if (e.key === "Escape" && modal && modal.style.display !== "none") {
             closeBlogModal();
         }
     });
