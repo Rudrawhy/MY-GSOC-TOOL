@@ -1,5 +1,16 @@
 // Dashboard JavaScript for GSoC Student Dashboard
 
+// Escape HTML to prevent XSS when injecting untrusted text into innerHTML
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
 // Load configuration
 async function loadConfig() {
     try {
@@ -389,16 +400,16 @@ function renderGitHubStats(data) {
     if (data.contributions && data.contributions.length > 0) {
         contributionList.innerHTML = data.contributions.map(contrib => `
             <div class="p-4 border border-gray-100 dark:border-gray-700 rounded-lg hover:shadow-sm transition-shadow bg-white dark:bg-gray-700/50">
-                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-1">${contrib.title}</h4>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">${contrib.description}</p>
+                <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-1">${escapeHtml(contrib.title)}</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">${escapeHtml(contrib.description)}</p>
                 <div class="text-xs text-gray-500 dark:text-gray-500 flex items-center">
                     <i class="fas fa-clock mr-1"></i> ${formatDate(contrib.date)}
-                    ${contrib.url ? `<span class="mx-2">|</span> <a href="${contrib.url}" target="_blank" class="text-primary hover:text-primary-dark">View on GitHub</a>` : ''}
+                    ${contrib.url ? `<span class="mx-2">|</span> <a href="${escapeHtml(contrib.url)}" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary-dark">View on GitHub</a>` : ''}
                 </div>
             </div>
         `).join('');
     } else {
-        contributionList.innerHTML = '<p class="text-gray-500 Italic">No contributions data available yet. The GitHub Actions workflow will populate this automatically.</p>';
+        contributionList.innerHTML = '<p class="text-gray-500 italic">No contributions data available yet. The GitHub Actions workflow will populate this automatically.</p>';
     }
 }
 
