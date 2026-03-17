@@ -14,8 +14,8 @@ if (fs.existsSync(envPath)) {
                 let value = match[2] || '';
                 // Remove quotes
                 if (value.length > 0 &&
-                    (value.startsWith('"') && value.endsWith('"')) ||
-                    (value.startsWith("'") && value.endsWith("'"))) {
+                    ((value.startsWith('"') && value.endsWith('"')) ||
+                    (value.startsWith("'") && value.endsWith("'")))) {
                     value = value.slice(1, -1);
                 }
                 process.env[key] = value;
