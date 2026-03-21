@@ -1,18 +1,18 @@
 {
   "student": {
-    "name": "Your Name",
+    "name": "Rudra Sharma",
     "bio": "Google Summer of Code Contributor",
-    "avatar": "https://github.com/yourusername.png",
-    "github": "https://github.com/yourusername",
-    "email": "your.email@example.com",
-    "blog": "https://yourblog.dev",
-    "linkedin": "https://linkedin.com/in/yourprofile"
+    "avatar": "https://github.com/Rudrawhy.png",
+    "github": "https://github.com/Rudrawhy",
+    "email": "rudrforschool1@gmail.com",
+    "blog": "https://dev.to/rudra__",
+    "linkedin": "https://www.linkedin.com/in/rudra-sharma-687a2b345/"
   },
   "project": {
     "title": "Your GSoC Project Title",
     "description": "A brief description of your GSoC project and what you're working on. Explain the problem you're solving and the impact of your work.",
-    "organization": "Your Organization",
-    "timeline": "May 2026 - September 2026",
+    "organization": "OWASP BLT",
+    "timeline": "",
     "repositories": [
       "https://github.com/YourOrg/Repository-1",
       "https://github.com/YourOrg/Repository-2"
